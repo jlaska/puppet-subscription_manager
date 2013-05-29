@@ -29,8 +29,8 @@ Puppet::Type.newtype(:rhsm_register) do
     defaultto :present
   end
 
-  newparam(:hostname, :namevar => true) do
-    desc "The rhsm hostname."
+  newparam(:server_hostname, :namevar => true) do
+    desc "The rhsm server hostname."
   end
 
   newparam(:username) do
@@ -41,7 +41,7 @@ Puppet::Type.newtype(:rhsm_register) do
     desc "The password to use when registering the system"
   end
 
-  newparam(:baseurl) do
+  newparam(:rhsm_baseurl) do
     desc "Specify a CDN baseurl to use"
   end
 
@@ -54,7 +54,7 @@ Puppet::Type.newtype(:rhsm_register) do
     defaultto false
   end
 
-  newparam(:insecure, :parent => Puppet::Property::Boolean) do
+  newparam(:server_insecure, :parent => Puppet::Property::Boolean) do
     desc "Should an insecure https connection be used."
     defaultto false
   end
