@@ -33,6 +33,15 @@ Puppet::Type.newtype(:rhsm_register) do
     desc "The rhsm server hostname."
   end
 
+  newparam(:server_insecure, :parent => Puppet::Property::Boolean) do
+    desc "Should an insecure https connection be used."
+    defaultto false
+  end
+
+  newparam(:rhsm_baseurl) do
+    desc "Specify a CDN baseurl to use"
+  end
+
   newparam(:username) do
     desc "The username to use when registering the system"
   end
@@ -41,21 +50,12 @@ Puppet::Type.newtype(:rhsm_register) do
     desc "The password to use when registering the system"
   end
 
-  newparam(:rhsm_baseurl) do
-    desc "Specify a CDN baseurl to use"
-  end
-
   newparam(:activationkeys) do
     desc "The activation key to use when registering the system (cannot be used with username and password)"
   end
 
   newparam(:autosubscribe, :parent => Puppet::Property::Boolean) do
     desc "Automatically attach this system to compatible subscriptions."
-    defaultto false
-  end
-
-  newparam(:server_insecure, :parent => Puppet::Property::Boolean) do
-    desc "Should an insecure https connection be used."
     defaultto false
   end
 
