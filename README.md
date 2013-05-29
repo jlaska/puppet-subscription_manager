@@ -1,6 +1,6 @@
 # PUPPET-SUBSCRIPTION_MANAGER
 
-This module provides Custom Puppet Provider to handle registration and consumption of Red Hat subscriptions using subscription-manager.  Note, I am a puppet novice.  This module was created by *extensively* borrowing from Gaël Chamoulaud's puppet-rhnreg_ks module (https://github.com/strider/puppet-rhnreg_ks).
+This module provides Custom Puppet Provider to handle registration and consumption of Red Hat subscriptions using subscription-manager.  Note, I am a puppet novice.  This module was created by *extensively* borrowing from Gaël Chamoulaud's [puppet-rhnreg_ks module](https://github.com/strider/puppet-rhnreg_ks).
 
 ## License
 
@@ -66,5 +66,5 @@ loads them.
 
 ## Issues
 
-Please file any issues or suggestions on [on GitHub](https://github.com/strider/puppet-subscription_manager/issues)
+Please file any issues or suggestions on [on GitHub](https://github.com/jlaska/puppet-subscription_manager/issues)
 
