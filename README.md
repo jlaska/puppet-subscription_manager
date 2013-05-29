@@ -34,7 +34,7 @@ The module adds the following new types:
 Register clients to Red Hat Subscription Management using an activation key:
 
 <pre>
-rhn_register { 'satelite.example.com':
+rhsm_register { 'satelite.example.com':
   server_hostname => 'my-satelite.example.com',
   activationkeys => '1-myactivationkey',
 }
@@ -43,7 +43,7 @@ rhn_register { 'satelite.example.com':
 Register clients to Red Hat Subscription management using a username and password:
 
 <pre>
-rhn_register { 'subscription.rhn.example.com':
+rhsm_register { 'subscription.rhn.example.com':
   username        => 'myusername',
   password        => 'mypassword',
   autosubscribe   => true,
