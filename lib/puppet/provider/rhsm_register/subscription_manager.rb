@@ -16,10 +16,6 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     params << "--server.insecure" if @resource[:server_insecure]
     params << "--rhsm.baseurl" <<  @resource[:rhsm_baseurl] if ! @resource[:rhsm_baseurl].nil?
 
-    params.each do |pm|
-      Puppet.debug("#{pm}")
-    end
-
     return params
   end
 
@@ -35,10 +31,6 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     params << "--activationkey" <<  @resource[:activationkeys] if ! @resource[:activationkeys].nil?
     params << "--force" if @resource[:force]
     params << "--autosubscribe" if @resource[:autosubscribe]
-
-    params.each do |pm|
-      Puppet.debug("#{pm}")
-    end
 
     return params
   end
