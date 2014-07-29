@@ -29,6 +29,7 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     params << "--username" << @resource[:username] if ! @resource[:username].nil?
     params << "--password" << @resource[:password] if ! @resource[:password].nil?
     params << "--activationkey" <<  @resource[:activationkeys] if ! @resource[:activationkeys].nil?
+    params << "--org" << @resource[:organization] if ! @resource[:organization].nil?
     params << "--force" if @resource[:force]
     params << "--autosubscribe" if @resource[:autosubscribe]
 
