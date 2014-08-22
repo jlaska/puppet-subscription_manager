@@ -13,7 +13,7 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     params = []
     params << "config"
     params << "--server.hostname" << @resource[:server_hostname] if ! @resource[:server_hostname].nil?
-    params << "--server.insecure" if @resource[:server_insecure]
+    params << ["--server.insecure", "1"] if @resource[:server_insecure]
     params << "--rhsm.baseurl" <<  @resource[:rhsm_baseurl] if ! @resource[:rhsm_baseurl].nil?
 
     return params
