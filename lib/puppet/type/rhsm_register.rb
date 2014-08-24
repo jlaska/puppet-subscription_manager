@@ -1,4 +1,4 @@
-require 'puppet/property/boolean'
+require 'puppet/parameter/boolean'
 require 'puppet/type'
 
 Puppet::Type.newtype(:rhsm_register) do
@@ -33,7 +33,7 @@ Puppet::Type.newtype(:rhsm_register) do
     desc "The rhsm server hostname."
   end
 
-  newparam(:server_insecure, :parent => Puppet::Property::Boolean) do
+  newparam(:server_insecure, :boolean => true, :parent => Puppet::Parameter::Boolean) do
     desc "Should an insecure https connection be used."
     defaultto false
   end
@@ -54,12 +54,12 @@ Puppet::Type.newtype(:rhsm_register) do
     desc "The activation key to use when registering the system (cannot be used with username and password)"
   end
 
-  newparam(:autosubscribe, :parent => Puppet::Property::Boolean) do
+  newparam(:autosubscribe, :boolean => true, :parent => Puppet::Parameter::Boolean) do
     desc "Automatically attach this system to compatible subscriptions."
     defaultto false
   end
 
-  newparam(:force, :parent => Puppet::Property::Boolean) do
+  newparam(:force, :boolean => true, :parent => Puppet::Parameter::Boolean) do
     desc "Should the registration be forced. Use this option with caution,
 	  setting it true will cause the subscription-manager command to be run
           every time runs."
