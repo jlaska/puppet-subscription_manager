@@ -66,4 +66,15 @@ Puppet::Type.newtype(:rhsm_register) do
     defaultto false
   end
 
+  newparam(:org) do
+    desc "The organization the system should be assigned to."
+
+    validate do |value|
+      if value.empty?
+        raise ArgumentError,
+          "org paramater may not be empty"
+      end
+    end
+  end
+
 end

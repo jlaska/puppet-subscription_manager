@@ -13,7 +13,7 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     params = []
     params << "config"
     params << "--server.hostname" << @resource[:server_hostname] if ! @resource[:server_hostname].nil?
-    params << "--server.insecure" if @resource[:server_insecure]
+    params << ["--server.insecure", "1"] if @resource[:server_insecure]
     params << "--rhsm.baseurl" <<  @resource[:rhsm_baseurl] if ! @resource[:rhsm_baseurl].nil?
 
     return params
@@ -25,12 +25,17 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
         self.fail("Either an activation key or username/password is required to register")
     end
 
+    if @resource[:org].nil?
+        self.fail("The 'org' paramater is required to register the system")
+    end
+
     params << "register"
     params << "--username" << @resource[:username] if ! @resource[:username].nil?
     params << "--password" << @resource[:password] if ! @resource[:password].nil?
     params << "--activationkey" <<  @resource[:activationkeys] if ! @resource[:activationkeys].nil?
     params << "--force" if @resource[:force]
     params << "--autosubscribe" if @resource[:autosubscribe]
+    params << "--org" << @resource[:org]
 
     return params
   end
