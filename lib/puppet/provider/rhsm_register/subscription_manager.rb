@@ -42,6 +42,15 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     return params
   end
 
+  def build_attach_parameters
+    params = []
+
+    params << "attach"
+    params << "--pool" << @resource[:pool] if ! @resource[:pool].nil?
+
+    return params
+  end
+
   def config
     Puppet.debug("This server will be configered for rhsm")
     cmd = build_config_parameters
@@ -51,6 +60,12 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
   def register
     Puppet.debug("This server will be registered")
     cmd = build_register_parameters
+    subscription_manager(*cmd)
+  end
+
+  def attach
+    Puppet.debug("This server will be attached to a pool")
+    cmd = build_attach_parameters
     subscription_manager(*cmd)
   end
 
@@ -84,4 +99,16 @@ Puppet::Type.type(:rhsm_register).provide(:subscription_manager) do
     end
   end
 
+  def pool
+    Puppet.debug("Checking for subscription PoolID: #{resource[:pool]}")
+    subscriptions = subscription_manager('list','--consumed')
+    if subscriptions =~ /#{Regexp.escape(resource[:pool])}/
+      Puppet.debug("Pool found")
+      return resource[:pool]
+    end
+  end
+
+  def pool=(value)
+    attach
+  end
 end

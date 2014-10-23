@@ -29,6 +29,7 @@ The module adds the following new types:
 - **password**: The password to use when registering the system
 - **server_hostname**: Specify a url to use as a server
 - **username**: The username to use when registering the system
+- **pool**: A specific license pool to attach the system to
 
 ### rhsm_register Examples
 
@@ -49,6 +50,16 @@ rhsm_register { 'subscription.rhn.example.com':
   password        => 'mypassword',
   autosubscribe   => true,
   force           => true,
+}
+</pre>
+
+Register clients to Red Hat Subscription management and attach to a specific license pool:
+
+<pre>
+rhsm_register { 'subscription.rhn.example.com':
+  username        => 'myusername',
+  password        => 'mypassword',
+  pool		  => 'mypoolid',
 }
 </pre>
 
