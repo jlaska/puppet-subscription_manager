@@ -66,6 +66,10 @@ Puppet::Type.newtype(:rhsm_register) do
     desc "The license pool to attach to after registering the system"
   end
 
+  newparam(:environment) do
+    desc "The environment to subscribe to in the case of using katello."
+  end
+
   newparam(:autosubscribe, :boolean => true, :parent => Puppet::Parameter::Boolean) do
     desc "Automatically attach this system to compatible subscriptions."
     defaultto false
