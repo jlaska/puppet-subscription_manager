@@ -18,7 +18,7 @@ Read Licence file for more information.
 The module adds the following new types:
 
 * `rhsm_register` for managing Red Hat Subscriptions
-* `rhsm_repo'     for managing Red Hat Repository Subscriptions
+* `rhsm_repo`     for managing Red Hat Repository Subscriptions
 
 ### rhsm_register Parameters
 
