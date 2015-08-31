@@ -45,7 +45,7 @@ class subscription_manager (
   $port              = $subscription_manager::params::port,
   $baseurl           = $subscription_manager::params::baseurl,
   $manage_repos      = $subscription_manager::params::manage_repos,
-) {
+) inherits subscription_manager::params {
   class { '::subscription_manager::install': } ->
   class { '::subscription_manager::config': }
 }
