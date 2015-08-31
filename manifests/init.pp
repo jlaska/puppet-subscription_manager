@@ -1,21 +1,28 @@
+#
 # == Class: subscription_manager
 #
-# Full description of class subscription_manager here.
+# Install and configure subscription_manager
 #
-# === Parameters
+# === Parameters:
 #
-# Document parameters here.
+# $version::                       subscription-manager package version, it's passed to ensure parameter of package resource
+#                                  can be set to specific version number, 'latest', 'present' etc.
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
 #
-# === Variables
+# $install_firstboot::             boolean; controls whether firstboot is installed or not. Defaults to false
+#                                  type:boolean
 #
-# Here you should define a list of variables that this module would require.
+# $install_gui::                   boolean; controls whether gui is installed or not. Defaults to false
+#                                  type:boolean
 #
-# [*sample_variable*]
-
+# $hostname::                      Server hostname
+#
+# $port::                          Server port
+#
+# $baseurl::                       Content base URL
+#
+# $manage_repos::                  Manage generation of yum repositories for subscribed content
+#
 # === Examples
 #
 #  class { subscription_manager:
@@ -30,6 +37,15 @@
 #
 # Copyright 2013 Gaël Chamoulaud <gchamoul@redhat.com>
 #
-class subscription_manager {
-
+class subscription_manager (
+  $version           = $subscription_manager::params::version,
+  $install_firstboot = $subscription_manager::params::install_firstboot,
+  $install_gui       = $subscription_manager::params::install_gui,
+  $hostname          = $subscription_manager::params::hostname,
+  $port              = $subscription_manager::params::port,
+  $baseurl           = $subscription_manager::params::baseurl,
+  $manage_repos      = $subscription_manager::params::manage_repos,
+) {
+  class { '::subscription_manager::install': } ->
+  class { '::subscription_manager::config': }
 }
