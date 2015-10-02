@@ -17,7 +17,7 @@ Puppet::Type.type(:rhsm_repo).provide(:subscription_manager) do
   end
 
   def self.enabled_repos
-    subscription_manager('repos').scan(/Repo ID: +([^\n]+)\n(?:[^\n]+\n)+Enabled: +1\n/)
+    subscription_manager('repos').scan(/Repo ID: +([^\n]+)\n(?:[^\n]+\n)+Enabled: +1\n/m)
   end
 
   def self.instances
