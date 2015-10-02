@@ -8,22 +8,27 @@ Puppet::Type.type(:rhsm_pool).provide(:subscription_manager) do
 
   commands :subscription_manager => "subscription-manager"
 
+  mk_resource_methods
+
   def create
     subscription_manager('attach','--pool',@resource[:id])
   end
 
   def destroy
-    #subscription_manager('repos','--disable',@resource[:name])
+    subscription_manager('remove','--serial',@resource[:serial])
+  end
+
+  def serial=(serial)
+    fail_read_only
   end
 
   def self.consumed_pools
-    debug(subscription_manager('list','--pool','--consumed').split("\n"))
-    subscription_manager('list','--pool','--consumed').split("\n")
+    subscription_manager('list','--consumed').scan(/Serial\: +([0-9]+)\nPool ID\: +([A-Za-z0-9]+)/m)
   end
 
   def self.instances
-    consumed_pools.collect do |pool|
-      new(:name => pool, :ensure => :present )
+    consumed_pools.collect do |serial,pool|
+      new(:name => pool, :ensure => :present, :serial => serial)
     end
   end
 

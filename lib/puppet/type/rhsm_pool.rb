@@ -7,7 +7,12 @@ Puppet::Type.newtype(:rhsm_pool) do
   ensurable
 
   newparam(:id, :namevar => true) do
-    desc "The rhsm channel to subscribe to."
+    desc "Pool id"
   end
+
+  newproperty(:serial) do
+    desc "Pool serial"
+  end
+
 
 end
