@@ -4,7 +4,6 @@ Puppet::Type.type(:rhsm_pool).provide(:subscription_manager) do
   EOS
 
   confine :osfamily => :redhat
-  confine :feature => :json
 
   commands :subscription_manager => "subscription-manager"
 
