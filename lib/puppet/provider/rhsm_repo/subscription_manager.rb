@@ -4,7 +4,6 @@ Puppet::Type.type(:rhsm_repo).provide(:subscription_manager) do
   EOS
 
   confine :osfamily => :redhat
-  confine :feature => :json
 
   commands :subscription_manager => "subscription-manager"
 
@@ -17,7 +16,7 @@ Puppet::Type.type(:rhsm_repo).provide(:subscription_manager) do
   end
 
   def self.enabled_repos
-    subscription_manager('repos').scan(/Repo ID: +([^\n]+)\n(?:[^\n]+\n)+Enabled: +1\n/m)
+    subscription_manager('repos').scan(/Repo ID: +([^\n\t ]+)\n(?:[^\n]+\n)+Enabled: +1\n/m).flatten
   end
 
   def self.instances
@@ -27,10 +26,9 @@ Puppet::Type.type(:rhsm_repo).provide(:subscription_manager) do
   end
 
   def self.prefetch(resources)
-    repos = instances
-    resources.keys.each do |name|
-      if provider = repos.find{ |repo| repo.name == name }
-        resources[name].provider = provider 
+    instances.each do |prov|
+      if resource = resources[prov.name]
+        resource.provider = prov
       end
     end
   end
