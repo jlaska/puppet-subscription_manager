@@ -1,0 +1,13 @@
+{
+  "name": "puppet-subscription_manager",
+  "version": "0.0.1",
+  "author": "James Laska \u003cjlaska@redhat.com\u003e",
+  "dependencies": [],
+  "license": "Apache License, Version 2.0",
+  "operatingsystem_support": [],
+  "project_page": "https://github.com/jlaska/puppet-subscription_manager",
+  "requirements": [],
+  "source": "git://github.com/jlaska/puppet-subscription_manager.git",
+  "summary": "subscription_manager provider for Puppet",
+  "tags": []
+}
